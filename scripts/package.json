@@ -1,0 +1,12 @@
+{
+  "name": "cms-scripts",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Scripts for managing the decentralized CMS",
+  "scripts": {
+    "issue-author": "node issue-author-cap.js"
+  },
+  "dependencies": {
+    "@mysten/sui": "^1.11.0"
+  }
+}
