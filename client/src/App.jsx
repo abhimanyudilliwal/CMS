@@ -8,6 +8,8 @@ import MyContent from './pages/MyContent';
 import ContentEditor from './pages/ContentEditor';
 import AdminAuthors from './pages/AdminAuthors';
 import ContentViewer from './pages/ContentViewer';
+import DecentralizedContentEditor from './pages/DecentralizedContentEditor';
+import DecentralizedHome from './pages/DecentralizedHome';
 
 // Public route wrapper
 const PublicRoute = ({ children }) => {
@@ -36,12 +38,15 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
+          {/* Decentralized Home - Public, wallet-based */}
+          <Route path="/web3" element={<DecentralizedHome />} />
+
           <Route path="/login" element={
             <PublicRoute>
               <Login />
             </PublicRoute>
           } />
-          
+
           <Route path="/" element={<Layout />}>
             <Route index element={
               <ProtectedRoute>
@@ -80,7 +85,11 @@ function App() {
             } />
             
             <Route path="content/:slug" element={<ContentViewer />} />
-            
+
+            {/* Decentralized Content Editor - No auth required, uses wallet */}
+            <Route path="decentralized-editor" element={<DecentralizedContentEditor />} />
+            <Route path="decentralized-editor/:id" element={<DecentralizedContentEditor />} />
+
             <Route path="*" element={
               <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center">

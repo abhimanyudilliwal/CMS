@@ -1,6 +1,7 @@
 import { Link, useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { FiHome, FiFileText, FiUsers, FiLogOut } from 'react-icons/fi';
+import WalletConnect from './WalletConnect';
 
 const Layout = ({ children }) => {
   const { user, logout } = useAuth();
@@ -69,25 +70,30 @@ const Layout = ({ children }) => {
               )}
             </div>
             
-            {user && (
-              <div className="flex items-center space-x-4">
-                <span className="text-sm text-gray-700">
-                  {user.name}
-                  {user.role === 'admin' && (
-                    <span className="ml-2 px-2 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded">
-                      Admin
-                    </span>
-                  )}
-                </span>
-                <button
-                  onClick={handleLogout}
-                  className="flex items-center space-x-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
-                >
-                  <FiLogOut className="w-4 h-4" />
-                  <span>Logout</span>
-                </button>
-              </div>
-            )}
+            <div className="flex items-center space-x-4">
+              {/* Sui Wallet Connect - for decentralized mode */}
+              <WalletConnect />
+
+              {user && (
+                <>
+                  <span className="text-sm text-gray-700">
+                    {user.name}
+                    {user.role === 'admin' && (
+                      <span className="ml-2 px-2 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded">
+                        Admin
+                      </span>
+                    )}
+                  </span>
+                  <button
+                    onClick={handleLogout}
+                    className="flex items-center space-x-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
+                  >
+                    <FiLogOut className="w-4 h-4" />
+                    <span>Logout</span>
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </header>

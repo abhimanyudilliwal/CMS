@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { FiMail, FiLock } from 'react-icons/fi';
+import WalletConnect from '../components/WalletConnect';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -99,6 +100,36 @@ const Login = () => {
             <p className="text-xs text-gray-500 mt-2">
               admin@cms.com / admin123
             </p>
+          </div>
+
+          {/* Divider */}
+          <div className="relative my-8">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white text-gray-500">Or use Web3</span>
+            </div>
+          </div>
+
+          {/* Web3 Option */}
+          <div className="space-y-4">
+            <div className="text-center">
+              <p className="text-sm text-gray-600 mb-3">
+                Connect with your Sui wallet
+              </p>
+              <div className="flex justify-center">
+                <WalletConnect />
+              </div>
+            </div>
+            <div className="text-center">
+              <Link
+                to="/web3"
+                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+              >
+                Go to Decentralized CMS →
+              </Link>
+            </div>
           </div>
         </div>
       </div>
